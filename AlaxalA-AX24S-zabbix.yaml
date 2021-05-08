@@ -1,0 +1,1428 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-05-08T14:23:15Z'
+  groups:
+    -
+      name: Templates
+    -
+      name: 'Templates/Network devices'
+  templates:
+    -
+      template: AlaxalA-AX2400S-MIB
+      name: 'Template Net AlaxalA AX2400S Series Switch SNMP'
+      description: 'AlaxalA AX2400S Series monitoring template using SNMPv1.'
+      templates:
+        -
+          name: 'Template Module Generic SNMP'
+      groups:
+        -
+          name: Templates
+        -
+          name: 'Templates/Network devices'
+      applications:
+        -
+          name: 'AX2430S::ax2430s'
+        -
+          name: 'AX2430S::ax2430sChassis'
+        -
+          name: 'AX2430S::ax2430sFdbClearMIB'
+        -
+          name: 'AX2430S::ax2430sPhysLine'
+        -
+          name: 'AX2430S::ax2430sSnmpAgent'
+        -
+          name: 'AX2430S::ax2430sSoftware'
+        -
+          name: 'AX2430S::ax2430sSwitch'
+        -
+          name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: 'AX2430S::axsBootManagement'
+        -
+          name: 'AX2430S::axsIfStats'
+        -
+          name: 'AX2430S::axslldpLocalSystemData'
+      items:
+        -
+          name: ax2430sChassisMaxNumber
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.2.1.1.0
+          key: AX2430S.ax2430sChassisMaxNumber
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'Max number of cluster chassis that can connect to this router.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sChassis'
+        -
+          name: ax2430sFdbClearReqTime
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.3.1.1.2.0
+          key: AX2430S.ax2430sFdbClearReqTime
+          delay: '60'
+          history: 7d
+          units: uptime
+          description: 'This object indicates the most recent time that received the demand to clear Fdb information.(sysUpTime)'
+          applications:
+            -
+              name: 'AX2430S::ax2430sFdbClearMIB'
+          preprocessing:
+            -
+              type: MULTIPLIER
+              parameters:
+                - '.01'
+        -
+          name: ax2430sFdbClearSet
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.3.1.1.1.0
+          key: AX2430S.ax2430sFdbClearSet
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'Fdb clear information. When want to clear fdb, then set value of this MIB as 1.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sFdbClearMIB'
+          valuemap:
+            name: 'AX2430S::ax2430sFdbClearSet'
+        -
+          name: ax2430sFdbClearSuccessTime
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.3.1.1.3.0
+          key: AX2430S.ax2430sFdbClearSuccessTime
+          delay: '60'
+          history: 7d
+          units: uptime
+          description: 'This object indicates the time of the most recent Fdb clearing success.(sysUpTime)'
+          applications:
+            -
+              name: 'AX2430S::ax2430sFdbClearMIB'
+          preprocessing:
+            -
+              type: MULTIPLIER
+              parameters:
+                - '.01'
+        -
+          name: ax2430sModelType
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.1.0
+          key: AX2430S.ax2430sModelType
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'Model type of this system.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSwitch'
+          valuemap:
+            name: 'AX2430S::ax2430sModelType'
+        -
+          name: ax2430sSnmpContinuousSend
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.4.3.0
+          key: AX2430S.ax2430sSnmpContinuousSend
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'Number of times that is recommendable continuous transmission packets.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSnmpAgent'
+        -
+          name: ax2430sSnmpObjectMaxNumber
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.4.4.0
+          key: AX2430S.ax2430sSnmpObjectMaxNumber
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'Max number of objects that contain SNMP packet.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSnmpAgent'
+        -
+          name: ax2430sSnmpReceiveDelay
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.4.2.0
+          key: AX2430S.ax2430sSnmpReceiveDelay
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'A recommendable interval to receive packets from Manager.The value is displayed in milliseconds.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSnmpAgent'
+        -
+          name: ax2430sSnmpSendReceiveSize
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.4.1.0
+          key: AX2430S.ax2430sSnmpSendReceiveSize
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'SNMP packet data size in Manager-to-Agent communication. The value is displayed in bytes.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSnmpAgent'
+        -
+          name: ax2430sSoftwareAbbreviation
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.2.2.0
+          key: AX2430S.ax2430sSoftwareAbbreviation
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'System software abbreviation.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSoftware'
+        -
+          name: ax2430sSoftwareName
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.2.1.0
+          key: AX2430S.ax2430sSoftwareName
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'Software name of this system.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSoftware'
+        -
+          name: ax2430sSoftwareVersion
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.2.3.0
+          key: AX2430S.ax2430sSoftwareVersion
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'System software version.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSoftware'
+        -
+          name: ax2430sSystemMsgAdditionalCode
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.8.0
+          key: AX2430S.ax2430sSystemMsgAdditionalCode
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'Additional code of system messages. For information about this code, see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgEventCode
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.7.0
+          key: AX2430S.ax2430sSystemMsgEventCode
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'Event kind code of system messages. For information about this code, see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgEventInterfaceID
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.6.0
+          key: AX2430S.ax2430sSystemMsgEventInterfaceID
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'Interface identification of system messages. For information about this code,see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgEventPoint
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.5.0
+          key: AX2430S.ax2430sSystemMsgEventPoint
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The code of part that system message error occured. For information about this code,see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgLevel
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.4.0
+          key: AX2430S.ax2430sSystemMsgLevel
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The newest system message log level.For information about this code, see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgText
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.1.0
+          key: AX2430S.ax2430sSystemMsgText
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The text of the system log message.For information about this code, see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgTimeStamp
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.3.0
+          key: AX2430S.ax2430sSystemMsgTimeStamp
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The time that event occured. And that is expressed as type of MM/DD hh:mm:ss MM:month(01-12) DD:day(01-31) hh:hour(00-23) mm:minute(00-59) ss:second(00-59) Insert space between DD and hh.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: ax2430sSystemMsgType
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.6.1.3.2.0
+          key: AX2430S.ax2430sSystemMsgType
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The event type. For information about this code, see: Operator''s Manual.'
+          applications:
+            -
+              name: 'AX2430S::ax2430sSystemMsg'
+        -
+          name: axsBootReason
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.1.51.1.0
+          key: AX2430S.axsBootReason
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'Reason of system start.'
+          applications:
+            -
+              name: 'AX2430S::axsBootManagement'
+          valuemap:
+            name: 'AX2430S::axsBootReason'
+        -
+          name: axslldpLocChassisId
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.1.100.3.2.0
+          key: AX2430S.axslldpLocChassisId
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The chassis ID about this equipment'
+          applications:
+            -
+              name: 'AX2430S::axslldpLocalSystemData'
+        -
+          name: axslldpLocChassisType
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.1.100.3.1.0
+          key: AX2430S.axslldpLocChassisType
+          delay: '60'
+          history: 7d
+          value_type: FLOAT
+          description: 'The chassis type about this equipment'
+          applications:
+            -
+              name: 'AX2430S::axslldpLocalSystemData'
+          valuemap:
+            name: 'AX2430S::axslldpLocChassisType'
+        -
+          name: axslldpLocSysDesc
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.1.100.3.4.0
+          key: AX2430S.axslldpLocSysDesc
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'System information about this equipment'
+          applications:
+            -
+              name: 'AX2430S::axslldpLocalSystemData'
+        -
+          name: axslldpLocSysName
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.21839.2.2.1.100.3.3.0
+          key: AX2430S.axslldpLocSysName
+          delay: '60'
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          description: 'The chassis ID about this equipment'
+          applications:
+            -
+              name: 'AX2430S::axslldpLocalSystemData'
+      discovery_rules:
+        -
+          name: 'ax2430sChassisEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#AX2430SCRITICALACCUMRUNTIME},.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.25,{#AX2430STOTALACCUMRUNTIME},.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.24,{#AX2430SFANNUMBER},.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.23,{#AX2430SCPULOAD1M},.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.11]'
+          key: AX2430S.ax2430sChassisEntry
+          delay: '3600'
+          description: 'An entry containing specific chassis.'
+          item_prototypes:
+            -
+              name: 'ax2430sChassisStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.3.{#SNMPINDEX}'
+              key: 'ax2430sChassisStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Current status of this chassis.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sChassisStatus'
+            -
+              name: 'ax2430sChassisType for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.2.{#SNMPINDEX}'
+              key: 'ax2430sChassisType[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Chassis type of this system.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sChassisType'
+            -
+              name: 'ax2430sCpuClock for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.6.{#SNMPINDEX}'
+              key: 'ax2430sCpuClock[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'CPU clock is shown by the numerical value.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sCpuLoad1m for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.11.{#SNMPINDEX}'
+              key: 'ax2430sCpuLoad1m[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'CPU utilization of one minute is shown by the numerical value.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sCpuName for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.5.{#SNMPINDEX}'
+              key: 'ax2430sCpuName[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              trends: '0'
+              value_type: TEXT
+              description: 'CPU name is shown by the character string of 16 characters or less.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sCriticalAccumRunTime for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.25.{#SNMPINDEX}'
+              key: 'ax2430sCriticalAccumRunTime[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Operating time under environment of 40 degrees C or more.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sFanNumber for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.23.{#SNMPINDEX}'
+              key: 'ax2430sFanNumber[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The maximum number of fans that can connect to this chassis.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sFlashFreeSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.14.{#SNMPINDEX}'
+              key: 'ax2430sFlashFreeSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The unused capacity of the filesystem in a built-in memory is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sFlashTotalSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.12.{#SNMPINDEX}'
+              key: 'ax2430sFlashTotalSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The total of filesystem use capacity and unused capacity in a built-in memory is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sFlashUsedSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.13.{#SNMPINDEX}'
+              key: 'ax2430sFlashUsedSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The use capacity of the filesystem in a built-in memory is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sMemoryFreeSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.9.{#SNMPINDEX}'
+              key: 'ax2430sMemoryFreeSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The unused memory size is shown by the numerical value.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sMemoryTotalSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.7.{#SNMPINDEX}'
+              key: 'ax2430sMemoryTotalSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The installing memory size is shown by the numerical value.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sMemoryUsedSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.8.{#SNMPINDEX}'
+              key: 'ax2430sMemoryUsedSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The use memory size is shown by the numerical value.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sPhysLineNumber for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.19.{#SNMPINDEX}'
+              key: 'ax2430sPhysLineNumber[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Number of physical lines.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sPowerUnitNumber for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.21.{#SNMPINDEX}'
+              key: 'ax2430sPowerUnitNumber[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Number of maximum power switches that this router can connect its.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sRedundantPsNumber for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.22.{#SNMPINDEX}'
+              key: 'ax2430sRedundantPsNumber[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Number of external power switches that this router can connect its.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sRomVersion for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.10.{#SNMPINDEX}'
+              key: 'ax2430sRomVersion[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              trends: '0'
+              value_type: TEXT
+              description: 'The version of ROM equipped with BCU is shown by the character string.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sSdCardFreeSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.18.{#SNMPINDEX}'
+              key: 'ax2430sSdCardFreeSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The remainder capacity of the SD card is shown by the numerical value. It responds by -1 at the SD card unconnection.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sSdCardStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.15.{#SNMPINDEX}'
+              key: 'ax2430sSdCardStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The SD card connection is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sSdCardStatus'
+            -
+              name: 'ax2430sSdCardTotalSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.16.{#SNMPINDEX}'
+              key: 'ax2430sSdCardTotalSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Total capacity of the SD card is shown by the numerical value. It responds by -1 at the MC card unconnection.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sSdCardUsedSize for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.17.{#SNMPINDEX}'
+              key: 'ax2430sSdCardUsedSize[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The use capacity of the SD card is shown by the numerical value. It responds by -1 at the SD card unconnection.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sStsLedStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.4.{#SNMPINDEX}'
+              key: 'ax2430sStsLedStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The state of STS LED of the device is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sStsLedStatus'
+            -
+              name: 'ax2430sTemperatureStatusNumber for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.20.{#SNMPINDEX}'
+              key: 'ax2430sTemperatureStatusNumber[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The maximum number of ax2430sTemperatureStatus in this chassis.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sTotalAccumRunTime for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.2.1.24.{#SNMPINDEX}'
+              key: 'ax2430sTotalAccumRunTime[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Total operation time after operation of device begins.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+        -
+          name: 'ax2430sFanEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#AX2430SFANSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.1.5.1.2]'
+          key: AX2430S.ax2430sFanEntry
+          delay: '3600'
+          description: 'This entry containing information for a fan.'
+          item_prototypes:
+            -
+              name: 'ax2430sFanStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.5.1.2.{#SNMPINDEX}'
+              key: 'ax2430sFanStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Status of fans.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sFanStatus'
+        -
+          name: 'ax2430sPhysLineEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#AX2430SPHYSLINETRANSCEIVERSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.5,{#AX2430SPHYSLINEIFINDEXNUMBER},.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.4,{#AX2430SPHYSLINEOPERSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.3]'
+          key: AX2430S.ax2430sPhysLineEntry
+          delay: '3600'
+          description: 'An entry containing physical port.'
+          item_prototypes:
+            -
+              name: 'ax2430sPhysLineConnectorType for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.2.{#SNMPINDEX}'
+              key: 'ax2430sPhysLineConnectorType[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: "Connector type is connected physical port. The value is 1(other) when connector is disconnected or connector type is unknown.When displaying in pannel, requests board name of NIF,then will display it. The value is -1\twhen PSU or NIF board is disconnected."
+              applications:
+                -
+                  name: 'AX2430S::ax2430sPhysLine'
+              valuemap:
+                name: 'AX2430S::ax2430sPhysLineConnectorType'
+            -
+              name: 'ax2430sPhysLineIfIndexNumber for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.4.{#SNMPINDEX}'
+              key: 'ax2430sPhysLineIfIndexNumber[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Number of ifIndex which is included in physical port.The value is -1 when PSU board or NIF board is disconnected.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sPhysLine'
+            -
+              name: 'ax2430sPhysLineOperStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.3.{#SNMPINDEX}'
+              key: 'ax2430sPhysLineOperStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Status of physical port. The value is -1 when PSU or NIF board is disconnected.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sPhysLine'
+              valuemap:
+                name: 'AX2430S::ax2430sPhysLineOperStatus'
+            -
+              name: 'ax2430sPhysLineTransceiverStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.2.1.1.5.{#SNMPINDEX}'
+              key: 'ax2430sPhysLineTransceiverStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Type and status of replaceable transceiver.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sPhysLine'
+              valuemap:
+                name: 'AX2430S::ax2430sPhysLineTransceiverStatus'
+        -
+          name: 'ax2430sPowerUnitEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#AX2430SPOWERSUPPLYSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.1.4.1.3,{#AX2430SPOWERCONNECTSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.1.4.1.2]'
+          key: AX2430S.ax2430sPowerUnitEntry
+          delay: '3600'
+          description: 'An entry containing power unit information.'
+          item_prototypes:
+            -
+              name: 'ax2430sPowerConnectStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.4.1.2.{#SNMPINDEX}'
+              key: 'ax2430sPowerConnectStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The current connection status of the power unit.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sPowerConnectStatus'
+            -
+              name: 'ax2430sPowerSupplyStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.4.1.3.{#SNMPINDEX}'
+              key: 'ax2430sPowerSupplyStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Status of power supply.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sPowerSupplyStatus'
+        -
+          name: 'ax2430sRedundantPsEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#AX2430SREDUNDANTPSSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.1.6.1.3,{#AX2430SREDUNDANTPSCONNECTSTATUS},.1.3.6.1.4.1.21839.2.2.6.2.1.6.1.2]'
+          key: AX2430S.ax2430sRedundantPsEntry
+          delay: '3600'
+          description: 'An entry containing external power supply information.'
+          item_prototypes:
+            -
+              name: 'ax2430sRedundantPsConnectStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.6.1.2.{#SNMPINDEX}'
+              key: 'ax2430sRedundantPsConnectStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'Mounting an external power supply is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sRedundantPsConnectStatus'
+            -
+              name: 'ax2430sRedundantPsStatus for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.6.1.3.{#SNMPINDEX}'
+              key: 'ax2430sRedundantPsStatus[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The operation of an external power supply is shown.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sRedundantPsStatus'
+        -
+          name: 'ax2430sTemperatureStatusEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#SNMPVALUE},.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.2,{#AX2430STEMPERATURESTATE},.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.5,{#AX2430STEMPERATURETHRESHOLD},.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.4,{#AX2430STEMPERATURESTATUSVALUE},.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.3]'
+          key: AX2430S.ax2430sTemperatureStatusEntry
+          delay: '3600'
+          description: 'An entry in the ambient temperature status table, representing the status of the associated testpoint maintained by the environmental monitor.'
+          item_prototypes:
+            -
+              name: 'ax2430sTemperatureState for {#SNMPVALUE}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.5.{#SNMPINDEX}'
+              key: 'ax2430sTemperatureState[{#SNMPVALUE}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The current state of the testpoint being instrumented.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+              valuemap:
+                name: 'AX2430S::ax2430sTemperatureState'
+              trigger_prototypes:
+                -
+                  expression: '{last()}=2'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: '{last()}=1'
+                  name: 'ax2430sTemperatureStatus is Caution for {#SNMPVALUE}'
+                  opdata: 'ax2430sTemperatureState[{#SNMPVALUE}], ax2430sTemperatureStatusValue[{#SNMPVALUE}]'
+                  priority: AVERAGE
+                  description: 'Temparature {#SNMPVALUE} status is caution.'
+                -
+                  expression: '{last()}=4'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: '{last()}<=3'
+                  name: 'ax2430sTemperatureStatus is Fatal for {#SNMPVALUE}'
+                  opdata: 'ax2430sTemperatureState[{#SNMPVALUE}], ax2430sTemperatureStatusValue[{#SNMPVALUE}]'
+                  priority: DISASTER
+                  description: 'Temparature {#SNMPVALUE} status is caution.'
+                  dependencies:
+                    -
+                      name: 'ax2430sTemperatureStatus is Warning for {#SNMPVALUE}'
+                      expression: '{AlaxalA-AX2400S-MIB:ax2430sTemperatureState[{#SNMPVALUE}].last()}=3'
+                      recovery_expression: '{AlaxalA-AX2400S-MIB:ax2430sTemperatureState[{#SNMPVALUE}].last()}<=2'
+                -
+                  expression: '{last()}=3'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: '{last()}<=2'
+                  name: 'ax2430sTemperatureStatus is Warning for {#SNMPVALUE}'
+                  opdata: 'ax2430sTemperatureState[{#SNMPVALUE}], ax2430sTemperatureStatusValue[{#SNMPVALUE}]'
+                  priority: HIGH
+                  description: 'Temparature {#SNMPVALUE} status is warning.'
+                  dependencies:
+                    -
+                      name: 'ax2430sTemperatureStatus is Caution for {#SNMPVALUE}'
+                      expression: '{AlaxalA-AX2400S-MIB:ax2430sTemperatureState[{#SNMPVALUE}].last()}=2'
+                      recovery_expression: '{AlaxalA-AX2400S-MIB:ax2430sTemperatureState[{#SNMPVALUE}].last()}=1'
+            -
+              name: 'ax2430sTemperatureStatusDescr for {#SNMPVALUE}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.2.{#SNMPINDEX}'
+              key: 'ax2430sTemperatureStatusDescr[{#SNMPVALUE}]'
+              delay: '60'
+              history: 7d
+              trends: '0'
+              value_type: TEXT
+              description: 'Textual description of the testpoint being instrumented. This description is a short textual label, suitable as a human-sensible identification for the rest of the information in the entry.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sTemperatureStatusValue for {#SNMPVALUE}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.3.{#SNMPINDEX}'
+              key: 'ax2430sTemperatureStatusValue[{#SNMPVALUE}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The current measurement of the testpoint being instrumented.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+            -
+              name: 'ax2430sTemperatureThreshold for {#SNMPVALUE}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.6.2.1.3.1.4.{#SNMPINDEX}'
+              key: 'ax2430sTemperatureThreshold[{#SNMPVALUE}]'
+              delay: '60'
+              history: 7d
+              value_type: FLOAT
+              description: 'The highest value that the associated instance of the object ax2430sTemperatureStatusValue may obtain before an emergency shutdown of the managed device is initiated.'
+              applications:
+                -
+                  name: 'AX2430S::ax2430sChassis'
+        -
+          name: 'axsIfStatsEntry Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#AXSIFSTATSHIGHSPEED},.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.11,{#AXSIFSTATSOUTBROADCASTMEGAPKTS},.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.10,{#AXSIFSTATSOUTMULTICASTMEGAPKTS},.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.9]'
+          key: AX2430S.axsIfStatsEntry
+          delay: '3600'
+          description: 'An entry containing extension statistics for interface.'
+          item_prototypes:
+            -
+              name: 'axsIfStatsHighSpeed for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.11.{#SNMPINDEX}'
+              key: 'axsIfStatsHighSpeed[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'A circuit speed.This value is displayed in mega-bps[Mbps]. Round off the 1,000,000bps.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsInBroadcastMegaPkts for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.6.{#SNMPINDEX}'
+              key: 'axsIfStatsInBroadcastMegaPkts[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'The number of non-unicast packets delivered to a higher-layer protocol. The value is displayed in mega-packets (M). Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsInMegaOctets for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.3.{#SNMPINDEX}'
+              key: 'axsIfStatsInMegaOctets[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'Number of octets that received on the interface. This value is displayed in mega-octets(M). Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsInMulticastMegaPkts for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.5.{#SNMPINDEX}'
+              key: 'axsIfStatsInMulticastMegaPkts[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'Number of multicast mega-packets that received on the interface. this value is displayed in mega-packets(M).Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsInUcastMegaPkts for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.4.{#SNMPINDEX}'
+              key: 'axsIfStatsInUcastMegaPkts[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'Number of subnetwork-unicast packets that received on the interface. This value is displayed in mega-packets(M).Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsName for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.2.{#SNMPINDEX}'
+              key: 'axsIfStatsName[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              trends: '0'
+              value_type: TEXT
+              description: 'Interfaces name. Same as ifDescr.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+            -
+              name: 'axsIfStatsOutBroadcastMegaPkts for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.10.{#SNMPINDEX}'
+              key: 'axsIfStatsOutBroadcastMegaPkts[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'Number of broadcast packets that transmitted on the interface. This value is displayed in mega-packets(M). Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsOutMegaOctets for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.7.{#SNMPINDEX}'
+              key: 'axsIfStatsOutMegaOctets[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'The total number of octets transmitted out of the interface. The value is displayed in mega-octets(M). Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsOutMulticastMegaPkts for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.9.{#SNMPINDEX}'
+              key: 'axsIfStatsOutMulticastMegaPkts[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'Number of multicast packets that transmitted on the interface. This value is displayed in mega-packets(M). Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+            -
+              name: 'axsIfStatsOutUcastMegaPkts for {#SNMPINDEX}'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.21839.2.2.1.1.4.1.1.8.{#SNMPINDEX}'
+              key: 'axsIfStatsOutUcastMegaPkts[{#SNMPINDEX}]'
+              delay: '60'
+              history: 7d
+              units: /sec
+              description: 'The total number of packets that higher-level protocols requested be transmitted to a subnetwork-unicast address.The value is displayed in mega packets(M). Value of 0 through 999,999 are rounded down.'
+              applications:
+                -
+                  name: 'AX2430S::axsIfStats'
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+      macros:
+        -
+          macro: '{$OID}'
+          value: .1.3.6.1.4.1.21839
+        -
+          macro: '{$OID_MOD}'
+          value: AX2430S
+        -
+          macro: '{$OID_PATH}'
+          value: iso.org.dod.internet.private.enterprises.alaxala
+        -
+          macro: '{$SNMP_COMMUNITY}'
+          value: public
+        -
+          macro: '{$SNMP_PORT}'
+          value: '161'
+  value_maps:
+    -
+      name: 'AX2430S::ax2430sChassisStatus'
+      mappings:
+        -
+          value: '2'
+          newvalue: up
+    -
+      name: 'AX2430S::ax2430sChassisType'
+      mappings:
+        -
+          value: '1'
+          newvalue: other
+        -
+          value: '400'
+          newvalue: model-AX2430S-24T
+        -
+          value: '401'
+          newvalue: model-AX2430S-48T
+        -
+          value: '402'
+          newvalue: model-AX2430S-24T2X
+        -
+          value: '403'
+          newvalue: model-AX2430S-48T2X
+    -
+      name: 'AX2430S::ax2430sFanStatus'
+      mappings:
+        -
+          value: '2'
+          newvalue: ok
+        -
+          value: '3'
+          newvalue: high-speed
+        -
+          value: '4'
+          newvalue: fault
+    -
+      name: 'AX2430S::ax2430sFdbClearSet'
+      mappings:
+        -
+          value: '0'
+          newvalue: initialValue
+        -
+          value: '1'
+          newvalue: processing
+        -
+          value: '2'
+          newvalue: failure
+        -
+          value: '3'
+          newvalue: success
+    -
+      name: 'AX2430S::ax2430sModelType'
+      mappings:
+        -
+          value: '1'
+          newvalue: other
+        -
+          value: '400'
+          newvalue: model-AX2430S-24T
+        -
+          value: '401'
+          newvalue: model-AX2430S-48T
+        -
+          value: '402'
+          newvalue: model-AX2430S-24T2X
+        -
+          value: '403'
+          newvalue: model-AX2430S-48T2X
+    -
+      name: 'AX2430S::ax2430sPhysLineConnectorType'
+      mappings:
+        -
+          value: '1'
+          newvalue: other
+        -
+          value: '301'
+          newvalue: type1000BASE-LX
+        -
+          value: '302'
+          newvalue: type1000BASE-SX
+        -
+          value: '303'
+          newvalue: type1000BASE-LH
+        -
+          value: '304'
+          newvalue: type1000BASE-BX10-D
+        -
+          value: '305'
+          newvalue: type1000BASE-BX10-U
+        -
+          value: '306'
+          newvalue: type1000BASE-BX40-D
+        -
+          value: '307'
+          newvalue: type1000BASE-BX40-U
+        -
+          value: '308'
+          newvalue: type1000BASE-SX2
+        -
+          value: '310'
+          newvalue: type1000BASE-LHB
+        -
+          value: '401'
+          newvalue: type10GBASE-SR
+        -
+          value: '402'
+          newvalue: type10GBASE-LR
+        -
+          value: '403'
+          newvalue: type10GBASE-ER
+        -
+          value: '404'
+          newvalue: type10GBASE-ZR
+    -
+      name: 'AX2430S::ax2430sPhysLineOperStatus'
+      mappings:
+        -
+          value: '1'
+          newvalue: other
+        -
+          value: '2'
+          newvalue: active
+        -
+          value: '3'
+          newvalue: initialization
+        -
+          value: '4'
+          newvalue: down
+        -
+          value: '6'
+          newvalue: lock
+        -
+          value: '7'
+          newvalue: close
+        -
+          value: '8'
+          newvalue: line-fault
+        -
+          value: '9'
+          newvalue: test
+        -
+          value: '10'
+          newvalue: nothing-configuration
+    -
+      name: 'AX2430S::ax2430sPhysLineTransceiverStatus'
+      mappings:
+        -
+          value: '1'
+          newvalue: unchangeable-transceiver
+        -
+          value: '20'
+          newvalue: sfp-mounted
+        -
+          value: '21'
+          newvalue: sfp-unmounted
+        -
+          value: '22'
+          newvalue: unsupported-sfp-mounted
+        -
+          value: '23'
+          newvalue: sfp-status-unknown
+        -
+          value: '30'
+          newvalue: xfp-mounted
+        -
+          value: '31'
+          newvalue: xfp-unmounted
+        -
+          value: '32'
+          newvalue: unsupported-xfp-mounted
+        -
+          value: '33'
+          newvalue: xfp-status-unknown
+    -
+      name: 'AX2430S::ax2430sPowerConnectStatus'
+      mappings:
+        -
+          value: '2'
+          newvalue: connected
+        -
+          value: '32'
+          newvalue: disconnected
+    -
+      name: 'AX2430S::ax2430sPowerSupplyStatus'
+      mappings:
+        -
+          value: '-1'
+          newvalue: disconnected
+        -
+          value: '2'
+          newvalue: ok
+        -
+          value: '4'
+          newvalue: fault
+    -
+      name: 'AX2430S::ax2430sRedundantPsConnectStatus'
+      mappings:
+        -
+          value: '2'
+          newvalue: connected
+        -
+          value: '32'
+          newvalue: disconnected
+    -
+      name: 'AX2430S::ax2430sRedundantPsStatus'
+      mappings:
+        -
+          value: '-1'
+          newvalue: disconnected
+        -
+          value: '2'
+          newvalue: ok
+        -
+          value: '4'
+          newvalue: fault
+    -
+      name: 'AX2430S::ax2430sSdCardStatus'
+      mappings:
+        -
+          value: '2'
+          newvalue: connected
+        -
+          value: '32'
+          newvalue: disconnected
+    -
+      name: 'AX2430S::ax2430sStsLedStatus'
+      mappings:
+        -
+          value: '1'
+          newvalue: green-light-blink
+        -
+          value: '2'
+          newvalue: green-light-on
+        -
+          value: '3'
+          newvalue: red-light-blink
+        -
+          value: '4'
+          newvalue: red-light-on
+        -
+          value: '6'
+          newvalue: light-off
+    -
+      name: 'AX2430S::ax2430sTemperatureState'
+      mappings:
+        -
+          value: '1'
+          newvalue: normal
+        -
+          value: '2'
+          newvalue: caution
+        -
+          value: '3'
+          newvalue: warning
+        -
+          value: '4'
+          newvalue: fatal
+    -
+      name: 'AX2430S::axsBootReason'
+      mappings:
+        -
+          value: '1'
+          newvalue: power-on
+        -
+          value: '2'
+          newvalue: reload
+        -
+          value: '3'
+          newvalue: system-fault
+        -
+          value: '4'
+          newvalue: system-stall
+        -
+          value: '5'
+          newvalue: reset
+        -
+          value: '6'
+          newvalue: fail-over
+        -
+          value: '7'
+          newvalue: default-restart
+    -
+      name: 'AX2430S::axslldpLocChassisType'
+      mappings:
+        -
+          value: '1'
+          newvalue: entPhysicalAlias
+        -
+          value: '2'
+          newvalue: ifAlias
+        -
+          value: '3'
+          newvalue: portEntPhysicalAlias
+        -
+          value: '4'
+          newvalue: backplaneEntPhysicalAlias
+        -
+          value: '5'
+          newvalue: macAddress
+        -
+          value: '6'
+          newvalue: networkAddress
